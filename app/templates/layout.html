@@ -1,0 +1,28 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Set a title for this route</title>
+        {% endif %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+    <div class="container">
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('papers.index') }}">Papers Manager</a></li>
+                    <li><a href="{{ url_for('doing_now.index') }}">Doing Now Manager</a></li>
+                    <li><a href="{{ url_for('summary.index') }}">Summary Manager</a></li>
+                    <li><a href="{{ url_for('description.index') }}">Description Manager</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    </body>
+</html>

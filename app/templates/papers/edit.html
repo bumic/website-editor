@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/papers.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit">
+    <h1>Edit Entry:</h1>
+    <form action="{{url_for('papers.edit', id=data.id)}}" method="post">
+        {{ form.csrf_token }}
+
+        <p>Link:</p>
+        {{ form.link }}
+        <p>Citation:</p>
+        {{ form.citation }}
+        <p>Notes:</p>
+        {{ form.notes }}
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+
+{% endblock %}

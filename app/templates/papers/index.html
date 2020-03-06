@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/papers.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="create-entry">
+    <h1>Create New Entry:</h1>
+    <form action="{{url_for('papers.index')}}" method="post">
+        {{ form.csrf_token }}
+
+        <p>Link:</p>
+        {{ form.link }}
+        <p>Citation:</p>
+        {{ form.citation }}
+        <p>Notes:</p>
+        {{ form.notes }}
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+
+<div class="view-entries">
+    <div class="flex-wrapper">
+        <h1>All Entries:</h1>
+        <a href="{{ url_for('papers.update_github') }}" id="save">Save to GitHub!</a>
+    </div>
+
+    {% for paper in data %}
+    <div class="paper-entry">
+        <p class="citation"><strong>Citation: </strong>{{ paper.citation | safe }}</p>
+        <p class="notes"><strong>Notes: </strong>{{ paper.notes }}</p>
+
+        <div class="flex-wrapper">
+            <div class="left-entry-actions">
+                <a href="{{ paper.link }}" target="_blank">Link</a>
+                <a href="{{url_for('papers.edit', id=paper.id)}}">Edit</a>
+            </div>
+            <div class="right-entry-actions">
+                <a href="{{url_for('papers.delete', id=paper.id)}}" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

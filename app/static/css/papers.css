@@ -1,0 +1,27 @@
+
+form input#submit {
+    width: 100px;
+}
+
+form textarea#citation {
+    height: 50px;
+}
+
+.paper-entry {
+    margin-top: 15px;
+}
+
+.paper-entry p.citation {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+.paper-entry p.notes {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
